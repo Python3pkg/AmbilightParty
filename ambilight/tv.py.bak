@@ -6,10 +6,11 @@ import copy
 from abc import ABCMeta, abstractmethod
 
 
-class AmilightTVObserver(metaclass=ABCMeta):
+class AmilightTVObserver:
     """
     An object being notified of changes in the Ambilight pixels.
     """
+    __metaclass__ = ABCMeta
 
     def __init__(self):
         """The observer object"""
@@ -83,19 +84,19 @@ class AmbilightTV(object):
     def _debug_request(self, r):
         print('')
         print("***** Request   :")
-        print(('--- encoding    : ' + r.encoding))
-        print(("--- url         : " + r.url))
+        print('--- encoding    : ' + r.encoding)
+        print("--- url         : " + r.url)
         print("--- headers     : ")
-        print((r.request.headers))
+        print(r.request.headers)
         print("--- body        : ??? ")
         print("***** Response  :")
-        print(("--- status code : " + str(r.status_code)))
+        print("--- status code : " + str(r.status_code))
         print("--- headers     : ")
-        print((r.headers))
-        print(("--- text        : " + r.content))
+        print(r.headers)
+        print("--- text        : " + r.content)
         print("--- json        : ")
         try:
-            print((r.json()))
+            print(r.json())
         except Exception:
             pass
         print('')

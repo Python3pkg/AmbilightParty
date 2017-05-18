@@ -1,6 +1,6 @@
 __author__ = 'pascal'
 
-from .tv import AmbilightTV
+from tv import AmbilightTV
 
 class Direction():
     CCW = 1
@@ -39,7 +39,7 @@ class BufferedAmbilightTV(AmbilightTV):
 
     def on_all_pixels_changed(self, red, green, blue):
         #print "notify_resetted :"+str(red)+str(green)+str(blue)
-        for side in list(self.pixels.keys()):
+        for side in self.pixels.keys():
             for i in range(0, self.sizes[side]):
                 self.pixels[side][i] = (red, green, blue)
 
@@ -67,7 +67,7 @@ class BufferedAmbilightTV(AmbilightTV):
             for pos in range(0, len(pixels)):
                 self.pixels[side][pos] = pixels[pos]
         else:
-            for pixel_pos, pixel in pixels.items():
+            for pixel_pos, pixel in pixels.iteritems():
                 self.pixels[side][pixel_pos] = pixel
 
     def _serialize_pixels(self):

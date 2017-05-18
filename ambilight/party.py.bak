@@ -45,7 +45,7 @@ class AmbilightParty():
             return
 
         if duration is None:
-            duration = sys.maxsize
+            duration = sys.maxint
         started = time.time()
         while time.time() < started + duration:
             try:
@@ -86,10 +86,10 @@ class AmbilightParty():
         print('Available themes :')
         print('    * Caterpillars :')
         for caterpillar_name in sorted(self.get_caterpillars().keys()):
-            print(('        - %s' % caterpillar_name))
+            print('        - %s' % caterpillar_name)
         print('    * Flags :')
         for flag_name in sorted(self.get_flags().keys()):
-            print(('        - %s' % flag_name))
+            print('        - %s' % flag_name)
 
     def play_caterpillar(self, pattern_pixels=None, caterpillar_name=None,
                          duration=0,
@@ -213,24 +213,24 @@ class AmbilightParty():
 
     def demo_caterpillars(self):
         themes = self.get_caterpillars()
-        remaining_names = list(themes.keys())
+        remaining_names = themes.keys()
 
         for i in range(0, 10):
             direction = random.sample({Direction.CW, Direction.CCW}, 1)[0]
             speed = random.sample({0.1, 0.5, 0.9}, 1)[0]
             caterpillar_name = random.sample(remaining_names, 1)[0]
             remaining_names.remove(caterpillar_name)
-            print(('Playing caterpillar [%s]' % caterpillar_name))
+            print('Playing caterpillar [%s]' % caterpillar_name)
             self.play_caterpillar(caterpillar_name=caterpillar_name, direction=direction, duration=6, speed=speed)
 
     def demo_flags(self):
         flags = self.get_flags()
-        remaining_names = list(flags.keys())
+        remaining_names = flags.keys()
 
         for i in range(0, 5):
             flag_name = random.sample(remaining_names, 1)[0]
             remaining_names.remove(flag_name)
-            print(('Displaying flag [%s]' % flag_name))
+            print('Displaying flag [%s]' % flag_name)
             self.play_flag(flag_name=flag_name)
             time.sleep(2)
 
@@ -278,7 +278,7 @@ def main():
 
     party.connect(args.ip)
     if args.info:
-        print((party.tv.info()))
+        print(party.tv.info())
         exit()
     elif args.stop:
         party.tv.set_mode_internal()
@@ -313,5 +313,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:
-        print(('Error:', e))
+        print('Error:', e)
         sys.exit(1)
